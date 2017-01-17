@@ -1,3 +1,7 @@
+test:
+  override:
+    - exit 0
+
 # This will deploy a new spl to GitHub releases when a new release tag is set
 deployment:
   release:
