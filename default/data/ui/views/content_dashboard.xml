@@ -1,0 +1,126 @@
+<form>
+  <label>Content Marketing</label>
+  <row>
+    <panel>
+      <input type="dropdown" token="track_name" searchWhenChanged="true">
+        <label>Song download overlay</label>
+        <populatingSearch earliest="$earliest$" latest="$latest$" fieldForLabel="Song" fieldForValue="track_name">index=splunktel_demo sourcetype="access_custom" bc_uri=/sync/addtolibrary* | stats count by track_name | sort track_name</populatingSearch>
+        <default>Headlines</default>
+      </input>
+      <chart>
+        <title>Song Downloads</title>
+        <searchString>index=splunktel_demo sourcetype="access_custom" bc_uri=/sync/addtolibrary*  | timechart count AS "Total Downloads" count(eval(track_name="$track_name$")) as "$track_name$"</searchString>
+        <earliestTime>-60m@m</earliestTime>
+        <latestTime>now</latestTime>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.axisTitleY.text">Downloads</option>
+        <selection>
+          <set token="selection.earliest">$start$</set>
+          <set token="selection.latest">$end$</set>
+          <set token="start.count">$start.count$</set>
+          <set token="end.count">$end.count$</set>
+        </selection>
+        <option name="charting.chart.overlayFields">$track_name|s$</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Top Artist Searches</title>
+        <searchString>index=splunktel_demo sourcetype="access_custom" bc_uri="/browse/search/*"  | top search_terms</searchString>
+        <earliestTime>$selection.earliest$</earliestTime>
+        <latestTime>$selection.latest$</latestTime>
+        <option name="charting.chart">bar</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="charting.secondaryAxis.maximumNumber">""</option>
+        <option name="charting.secondaryAxis.minimumNumber">""</option>
+        <option name="charting.secondaryAxis.scale">""</option>
+        <option name="count">10</option>
+        <option name="displayRowNumbers">true</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="height">350px</option>
+        <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+      </chart>
+    </panel>
+    <panel>
+      <table>
+        <title>Top Song Downloads</title>
+        <searchString>index=splunktel_demo sourcetype="access_custom" bc_uri=/sync/addtolibrary*| stats count, sparkline(count) as "Sparkline" by track_name, artist_name | sort count desc | rename  track_name AS Song artist_name AS Artist|  table Song Artist Sparkline count</searchString>
+        <earliestTime>$selection.earliest$</earliestTime>
+        <latestTime>$selection.latest$</latestTime>
+        <option name="count">10</option>
+        <option name="displayRowNumbers">true</option>
+        <format type="sparkline" field="Sparkline">
+          <option name="lineColor">#5379af</option>
+          <option name="fillColor">#CCDDFF</option>
+          <option name="lineWidth">1</option>
+          <option name="height">20</option>
+        </format>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">true</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Top Artist Downloads</title>
+        <searchString>index=splunktel_demo sourcetype="access_custom" bc_uri=/sync/addtolibrary* 
+| timechart useother=f usenull=f count by artist_name</searchString>
+        <earliestTime>$selection.earliest$</earliestTime>
+        <latestTime>$selection.latest$</latestTime>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.chart.stackMode">stacked100</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.secondaryAxis.maximumNumber">""</option>
+        <option name="charting.secondaryAxis.minimumNumber">""</option>
+        <option name="charting.secondaryAxis.scale">""</option>
+        <option name="count">10</option>
+        <option name="displayRowNumbers">true</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+      </chart>
+    </panel>
+  </row>
+</form>

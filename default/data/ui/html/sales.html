@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <script>window.i18n_register = function () { }</script>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Customer Service | Splunk Developer Platform Demo</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width" />
+
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="/static/app/splunktel_demo/splunktel/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/static/app/splunktel_demo/splunktel/css/jquery.dataTables.css" />
+<link rel="stylesheet" href="/static/app/splunktel_demo/splunktel/css/main.min.css" />
+<script src="/static/app/splunktel_demo/splunktel/js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+
+<body class="customer-service-page">
+  <div id="wrapper">
+    <div id="inner-wrapper" class="clearfix">
+      <header>
+        <a href="{{SPLUNKWEB_URL_PREFIX}}/app/splunktel_demo/start" class="home-link" title="Back to splash page"><img src="/static/app/splunktel_demo/splunktel/img/splunktel-header-img.png" alt="Splunktel" class="header-logo"
+          /></a>
+        <nav id="top-nav">
+          <a href="#">Reference</a>
+          <a href="#">About</a>
+          <a href="#">Help</a>
+          <a href="#">Logout</a>
+          <a href="#" class="search" title="Search"><img src="/static/app/splunktel_demo/splunktel/img/magnifying-glass-icon.png" alt="Search" /></a>
+        </nav>
+      </header>
+
+      <div class="left-col">
+        <nav id="left-nav">
+          <a href="{{SPLUNKWEB_URL_PREFIX}}/app/splunktel_demo/start" class="home-link">Home</a>
+          <a href="splunktel" class="home-link">Customer Service</a>
+          <a href="#" class="current">Current Sales</a>
+        </nav>
+      </div>
+
+
+      <div class="content customer-service-content">
+
+        <div id="customer-info">
+
+          <div class="customer clearfix current">
+            <h1>Embedded Report</h1>
+            <h2>This is an embeded report showing the sales and predicted sales. It can be emedded into any html page.</h2>
+
+            <iframe height="350" width="960" frameborder="0" src="http://127.0.0.1:8000/en-US/embed?s=%2FservicesNS%2Fnobody%2Fsplunktel_demo%2Fsaved%2Fsearches%2FScheduled%2520-%2520Activations%2520over%2520the%2520last%2520hour&oid=CSFSm1DLpz4M6pmego3_W90hu9stMFa6ncA0d3Lmh3fybcYQ7HUKLheINLXh8gffx0WLDQiOA1W_EwcOqvY6jQ91W7PV7wyNY1zbTqA1DSd17ZcW6GtCrEVeN3ZU72Dd_e%5ERrWH_ZSVvrNmkfJCj9a08p74g6329vYQiXS9qpu9gWIr"></iframe>
+
+          </div>
+
+          <script src="/en-US/config?autoload=1"></script>
+          <script src="/en-US/static/@177783/js/i18n.js"></script>
+          <script src="/en-US/static/@177783/js/build/simplexml.min/config.js"></script>
+          <script type="text/javascript">
+  require.config({
+    baseUrl: "/en-US/static/@178301/js",
+    paths: {
+      "demo-plugins": "/static/app/splunktel_demo/splunktel/js/plugins",
+      "demo-config": "/static/app/splunktel_demo/splunktel/SplunkDemo",
+      "demo-custsvc": "/static/app/splunktel_demo/splunktel/customer-service/customer-service"
+    },
+    shim: {
+      "demo-plugins": {
+        deps: ["jquery"]
+      },
+      "demo-config": {
+        deps: ["splunkjs/splunk", "jquery"]
+      },
+      "demo-custsvc": {
+        deps: ["demo-plugins", "demo-config"]
+      }
+    }
+  });
+  require(["splunkjs/mvc/protections", "demo-plugins", "demo-config", "demo-custsvc"], function (protections) {
+    protections.enableCSRFProtection(jQuery);
+    console.log("READY!")
+
+  });
+
+</script>
+</body>
+
+</html>

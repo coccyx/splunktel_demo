@@ -1,0 +1,10 @@
+# This will deploy a new spl to GitHub releases when a new release tag is set
+deployment:
+  release:
+    tag: /v[0-9]+(\.[0-9]+)*/
+    owner: circleci
+    commands:
+      - sed -i s/_VERSION_/$CIRCLE_TAG/ ./default/app.conf
+      - ./build.sh
+      - go get github.com/tcnksm/ghr
+      - ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace `git describe --tags` splunktel_demo.spl

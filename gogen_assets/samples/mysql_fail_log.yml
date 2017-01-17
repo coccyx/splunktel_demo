@@ -1,0 +1,50 @@
+begin: -1h
+count: 6
+earliest: now
+interval: 60
+latest: now
+lines:
+- _raw: '091201 15:35:20 [CRITICAL] /opt/mysql/bin/mysqld: Disk is full writing
+    ''/mysqllog/binlog/localhost-3306-bin.000020'' (Errcode: 28). Waiting for someone
+    to free space... Retry in 60 secs'
+  host: localhost
+  index: splunktel_demo
+  source: /usr/local/mysql/logs/mysqld.log
+  sourcetype: mysql_config
+- _raw: '091201 15:35:30 [CRITICAL] Error writing file ''/mysqllog/slow_log/localhost_3306_slow_queries.log''
+    (errno: 1)'
+  host: localhost
+  index: splunktel_demo
+  source: /usr/local/mysql/logs/mysqld.log
+  sourcetype: mysql_config
+- _raw: '091201 15:35:41 [CRITICAL] Error writing file ''/mysqllog/binlog/localhost-3306-bin''
+    (errno: 28)'
+  host: localhost
+  index: splunktel_demo
+  source: /usr/local/mysql/logs/mysqld.log
+  sourcetype: mysql_config
+- _raw: 091201 15:36:00 [CRITICAL] Could not use /mysqllog/binlog/localhost-3306-bin
+    for logging (error 28)
+  host: localhost
+  index: splunktel_demo
+  source: /usr/local/mysql/logs/mysqld.log
+  sourcetype: mysql_config
+- _raw: 091201 15:36:01 [CRITICAL] Aborting
+  host: localhost
+  index: splunktel_demo
+  source: /usr/local/mysql/logs/mysqld.log
+  sourcetype: mysql_config
+- _raw: '091201 15:36:05 [CRITICAL] ./mysqld: Shutdown complete'
+  host: localhost
+  index: splunktel_demo
+  source: /usr/local/mysql/logs/mysqld.log
+  sourcetype: mysql_config
+name: mysql_fail_log
+randomizeEvents: false
+rater: failure
+tokens:
+- format: regex
+  name: token.0
+  replacement: '%d/%b/%Y %H:%M:%S'
+  token: (\d{6}\s\d{2}:\d{2}:\d{2})
+  type: timestamp

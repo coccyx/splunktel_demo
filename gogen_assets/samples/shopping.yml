@@ -1,0 +1,171 @@
+begin: -1h
+count: 8
+earliest: -3s
+interval: 3
+latest: now
+lines:
+- _raw: $webIP$ $externalIP$ - - [$ts$] "$method$ $uri$&JSESSIONID=SD$jsessionId1$SL$jsessionId2$FF$jsessionId3$ADFF$jsessionId4$ HTTP 1.1" $httpstatus$ $timeTaken$ "$referrerUri$" "$userAgent$" $size$
+  host: $webHost$
+  index: splunktel_demo
+  source: /opt/apache/log/access_combined.log
+  sourcetype: access_combined
+name: shoppingapache
+randomizeCount: 0.33
+rater: partial_outage
+singlePass: false
+tokens:
+- format: template
+  name: ts
+  replacement: '%b %d %H:%M:%S.%f'
+  type: timestamp
+- format: template
+  name: method
+  type: weightedChoice
+  weightedChoice:
+  - weight: 4
+    choice: GET
+  - weight: 1
+    choice: POST
+- format: template
+  name: uri
+  type: weightedChoice
+  weightedChoice:
+  - weight: 2
+    choice: "/cart.do?action=$action$&itemId=$itemId$&product_id=$productId$"
+  - weight: 2
+    choice: "/product.screen?product_id=$productId$"
+  - weight: 3
+    choice: "/category.screen?category_id=$catId$"
+  - weight: 1
+    choice: "/oldlink?item_id=$itemId$"
+- format: template
+  group: 3
+  name: webHost
+  sample: webhosts.csv
+  srcField: host
+  field: host
+  type: fieldChoice
+- format: template
+  group: 3
+  name: webIP
+  sample: webhosts.csv
+  srcField: ip
+  type: fieldChoice
+- format: template
+  name: externalIP
+  sample: external_ips.sample
+  type: choice
+- choice:
+  - "purchase"
+  - "addtocart"
+  - "remove"
+  - "view"
+  - "changequantity"
+  format: template
+  name: action
+  type: choice
+- format: template
+  name: itemId
+  sample: items.sample
+  type: choice
+- format: template
+  name: productId
+  sample: products.sample
+  type: choice
+- format: template
+  name: catId
+  sample: categories.sample
+  type: choice
+- format: template
+  name: httpstatus
+  type: weightedChoice
+  weightedChoice:
+  - weight: 7
+    choice: "200"
+  - weight: 2
+    choice: "503"
+  - weight: 1
+    choice: "400"
+  - weight: 1
+    choice: "404"
+  - weight: 1
+    choice: "406"
+- format: template
+  lower: 100
+  name: timeTaken
+  rater: timeTaken_outage
+  replacement: int
+  type: rated
+  upper: 1000
+- format: template
+  name: referrerUri
+  type: weightedChoice
+  weightedChoice:
+  - weight: 2
+    choice: "/cart.do?action=$referrerAction$&itemId=$referrerItemId$&product_id=$referrerProductId$"
+  - weight: 2
+    choice: "/product.screen?product_id=$referrerProductId$"
+  - weight: 3
+    choice: "/category.screen?category_id=$referrerCatId$"
+  - weight: 1
+    choice: "/oldlink?item_id=$referrerItemId$"
+- choice:
+  - "purchase"
+  - "addtocart"
+  - "remove"
+  - "view"
+  - "changequantity"
+  format: template
+  name: referrerAction
+  type: choice
+- format: template
+  name: referrerItemId
+  sample: items.sample
+  type: choice
+- format: template
+  name: referrerProductId
+  sample: products.sample
+  type: choice
+- format: template
+  name: referrerCatId
+  sample: categories.sample
+  type: choice
+- format: template
+  name: userAgent
+  sample: useragents.sample
+  type: choice
+- format: template
+  name: size
+  lower: 200
+  replacement: int
+  type: random
+  upper: 4000
+- format: template
+  name: jsessionId1
+  lower: 1000000000
+  replacement: int
+  type: random
+  upper: 9999999999
+- format: template
+  name: jsessionId2
+  lower: 1000000000
+  replacement: int
+  type: random
+  upper: 9999999999
+- format: template
+  name: jsessionId3
+  lower: 1000000000
+  replacement: int
+  type: random
+  upper: 9999999999
+- format: template
+  name: jsessionId4
+  lower: 1000000000
+  replacement: int
+  type: random
+  upper: 9999999999
+
+
+
+
+

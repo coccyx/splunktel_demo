@@ -1,0 +1,117 @@
+.dashboard-row {
+    background: transparent 50% 50% no-repeat url('/static/app/splunktel_demo/background-small4.png');
+    background-size:800px 445px;
+    min-height: 450px;
+    min-width: 800px;
+    position: relative;
+}
+.dashboard-row  {
+    width: 800px;
+    margin: 0 auto;
+}
+.dashboard-row .panel-head,
+.dashboard-row .panel-footer {
+    display: none;
+}
+
+.dashboard-panel {
+    background:transparent!important;
+}
+
+.dashboard-row .after-label{
+    display: inline-block;
+}
+.dashboard-row .single-value .under-label {
+    text-transform: none;
+    color: #fff;
+    font-size: 11px;
+}
+.dashboard-row #authentications {
+   position: absolute;
+   top: 106px;
+   left: 640px;
+}
+.dashboard-row #web_transactions {
+   position: absolute;
+   top: 106px;
+   left: 255px;
+}
+
+.dashboard-row #web_transactions_sparkline {
+    position: relative;
+    width: 200px!important;
+    top: 120px;
+    left: -125px;
+}
+.dashboard-row #web_transactions_sparkline svg>rect {
+    fill: rgba(255,255,255,0);
+}
+
+.dashboard-row #crm_transactions {
+   position: absolute;
+   top: 108px;
+   left: -70px;
+}
+
+.dashboard-row #crm_transactions_sparkline {
+    position: relative;
+    width: 200px!important;
+    top: 125px;
+    left: -460px;
+}
+.dashboard-row #crm_transactions_sparkline svg>rect {
+    fill: rgba(255,255,255,0);
+}
+
+.dashboard-row #total_transactions {
+   position: absolute;
+   top: 260px;
+   left: -200px;
+}
+
+.dashboard-row #total_transactions_sparkline {
+    position: relative;
+    width: 200px!important;
+    top: 250px;
+    left: -340px;
+}
+.dashboard-row #total_transactions_sparkline svg>rect {
+    fill: rgba(255,255,255,0);
+}
+
+.dashboard-row #downloads {
+   position: absolute;
+   top: 225px;
+   left: 315px;
+}
+
+.dashboard-row #music_download_sparkline {
+    position: relative;
+    width: 200px!important;
+    top: 250px;
+    left: -60px;
+}
+.dashboard-row #music_download_sparkline svg>rect {
+    fill: rgba(255,255,255,0);
+}
+
+.dashboard-row #authentications_sparkline {
+    position: relative;
+    width: 200px!important;
+    top: 130px;
+    left: -140px;
+}
+.dashboard-row #authentications_sparkline svg>rect {
+    fill: rgba(255,255,255,0);
+}
+.dashboard-row #mplatforms {
+    position: absolute;
+    width: 150px!important;
+    top: 10px;
+}
+
+.splunk-chart .ui-resizable-handle {
+  display: none !important;
+}
+
+

@@ -1,0 +1,86 @@
+[views/splunk_arch]
+access = read : [ * ], write : [ admin, power ]
+export = none
+owner = admin
+version = 6.0
+modtime = 1383150529.438962000
+
+[nav/default]
+version = 6.0
+modtime = 1383000777.423903000
+
+[views/start]
+version = 6.5.0
+modtime = 1475805680.115547000
+
+[views/webstore_operations]
+version = 6.2.0
+modtime = 1415633327.613344000
+
+[datamodels/splunktel_demo]
+access = read : [ * ], write : [ admin, power ]
+export = none
+owner = nobody
+version = 6.0
+modtime = 1382996938.351914000
+
+[models/splunktel_demo]
+version = 6.0
+modtime = 1382996938.353860000
+
+[views/exec_kpi]
+access = read : [ * ], write : [ admin, power ]
+export = none
+owner = admin
+version = 6.0
+modtime = 1382998081.886081000
+
+[views/help_script]
+version = 6.2.0
+modtime = 1415648221.024109000
+
+[views/help_pass]
+access = read : [ * ], write : [ admin, power ]
+export = none
+owner = admin
+version = 6.2.0
+modtime = 1415649882.135755000
+
+[app/install/install_source_checksum]
+version = 6.2.0
+modtime = 1420744550.244921000
+
+[views/content_dashboard]
+version = 6.2.0
+modtime = 1415633506.427333000
+
+[views/sales_realtime]
+version = 6.5.0
+modtime = 1475848534.799220000
+
+[views/customer_care]
+version = 6.2.0
+modtime = 1415636104.495053000
+
+[views/help_video]
+version = 6.2.0
+modtime = 1415642209.687818000
+
+[datamodels/sales]
+access = read : [ * ], write : [ admin ]
+export = system
+owner = admin
+version = 6.2.0
+modtime = 1434392694.863061000
+
+[models/sales]
+access = read : [ * ], write : [ admin ]
+export = system
+owner = admin
+version = 6.2.0
+modtime = 1434392694.875475000
+
+[savedsearches/Test]
+owner = admin
+version = 6.2.0
+modtime = 1435672088.872406000

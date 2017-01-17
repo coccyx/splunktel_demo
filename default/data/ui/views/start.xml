@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?><dashboard stylesheet="architecture_overlay.css">
+  <label>Customer Architecture</label>
+  <row>
+    <panel>
+      <single id="authentications">
+        <search>
+          <query>index=splunktel_demo source="/var/log/radius.log" | stats count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="underLabel">Authentications</option>
+        <option name="field">count</option>
+        <option name="linkView">search</option>
+        <option name="linkFields">result</option>
+        <option name="linkSearch">index=splunktel_demo source="/var/log/radius.log"</option>
+        <option name="height">20</option>
+      </single>
+    </panel>
+    <panel>
+      <single id="web_transactions">
+        <search>
+          <query>index=splunktel_demo sourcetype=access_combined | stats count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="underLabel">Trans</option>
+        <option name="linkView">search</option>
+        <option name="linkFields">result</option>
+        <option name="linkSearch">index=splunktel_demo sourcetype=access_custom</option>
+        <option name="height">20</option>
+      </single>
+    </panel>
+    <panel>
+      <single id="crm_transactions">
+        <search>
+          <query>index=splunktel_demo sourcetype=business_event | stats count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="underLabel">Trans</option>
+        <option name="linkView">search</option>
+        <option name="linkFields">result</option>
+        <option name="linkSearch">index=splunktel_demo sourcetype=business_event</option>
+        <option name="height">20</option>
+      </single>
+    </panel>
+    <panel>
+      <single id="total_transactions">
+        <search>
+          <query>index=splunktel_demo | stats count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="underLabel">Total Transactions</option>
+        <option name="linkView">search</option>
+        <option name="linkFields">result</option>
+        <option name="linkSearch">index=splunktel_demo</option>
+        <option name="height">20</option>
+      </single>
+    </panel>
+    <panel>
+      <single id="downloads">
+        <search>
+          <query>index=splunktel_demo sourcetype="access_custom" bc_uri=/sync/addtolibrary* | stats count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="underLabel">Music Downloads</option>
+        <option name="linkView">search</option>
+        <option name="linkFields">result</option>
+        <option name="linkSearch">index=splunktel_demo sourcetype="access_custom" bc_uri=/sync/addtolibrary*</option>
+        <option name="height">20</option>
+      </single>
+    </panel>
+    <panel>
+      <chart id="web_transactions_sparkline">
+        <title></title>
+        <search>
+          <query>index=splunktel_demo sourcetype="access_combined" | timechart count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">25</option>
+        <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="charting.axisLabelsX.axisVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.axisVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorTickVisibility">hide</option>
+        <option name="charting.gridLinesX.showMajorLines">false</option>
+        <option name="charting.gridLinesX.showMinorLines">false</option>
+        <option name="charting.gridLinesY.showMajorLines">false</option>
+        <option name="charting.gridLinesY.showMinorLines">false</option>
+        <option name="charting.axisLabelsX.hideCategories">true</option>
+        <option name="link.visible">false</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart id="crm_transactions_sparkline">
+        <title></title>
+        <search>
+          <query>index=splunktel_demo sourcetype=business_event | timechart count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">25</option>
+        <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="charting.axisLabelsX.axisVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.axisVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorTickVisibility">hide</option>
+        <option name="charting.gridLinesX.showMajorLines">false</option>
+        <option name="charting.gridLinesX.showMinorLines">false</option>
+        <option name="charting.gridLinesY.showMajorLines">false</option>
+        <option name="charting.gridLinesY.showMinorLines">false</option>
+        <option name="charting.axisLabelsX.hideCategories">true</option>
+        <option name="link.visible">false</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart id="total_transactions_sparkline">
+        <title></title>
+        <search>
+          <query>index=splunktel_demo | timechart count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">25</option>
+        <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="charting.axisLabelsX.axisVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.axisVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorTickVisibility">hide</option>
+        <option name="charting.gridLinesX.showMajorLines">false</option>
+        <option name="charting.gridLinesX.showMinorLines">false</option>
+        <option name="charting.gridLinesY.showMajorLines">false</option>
+        <option name="charting.gridLinesY.showMinorLines">false</option>
+        <option name="charting.axisLabelsX.hideCategories">true</option>
+        <option name="link.visible">false</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart id="music_download_sparkline">
+        <title></title>
+        <search>
+          <query>index=splunktel_demo sourcetype="access_custom" bc_uri="/sync/addtolibrary/*" | timechart count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">25</option>
+        <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="charting.axisLabelsX.axisVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.axisVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorTickVisibility">hide</option>
+        <option name="charting.gridLinesX.showMajorLines">false</option>
+        <option name="charting.gridLinesX.showMinorLines">false</option>
+        <option name="charting.gridLinesY.showMajorLines">false</option>
+        <option name="charting.gridLinesY.showMinorLines">false</option>
+        <option name="charting.axisLabelsX.hideCategories">true</option>
+        <option name="link.visible">false</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart id="authentications_sparkline">
+        <title></title>
+        <search>
+          <query>index=splunktel_demo sourcetype="radius" start | timechart count</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="height">25</option>
+        <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="charting.axisLabelsX.axisVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsX.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsX.minorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.axisVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorLabelVisibility">hide</option>
+        <option name="charting.axisLabelsY.majorTickVisibility">hide</option>
+        <option name="charting.axisLabelsY.minorTickVisibility">hide</option>
+        <option name="charting.gridLinesX.showMajorLines">false</option>
+        <option name="charting.gridLinesX.showMinorLines">false</option>
+        <option name="charting.gridLinesY.showMajorLines">false</option>
+        <option name="charting.gridLinesY.showMinorLines">false</option>
+        <option name="charting.axisLabelsX.hideCategories">true</option>
+        <option name="link.visible">false</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

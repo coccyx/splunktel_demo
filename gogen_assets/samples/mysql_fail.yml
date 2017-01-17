@@ -1,0 +1,63 @@
+begin: -1h
+count: 3
+earliest: -3s
+generator: mysql_fail
+interval: 3
+latest: now
+lines:
+- _raw: '[$ts$] src=$src$ transaction_speed=$transactionSpeed$ cpu_util=$cpuUtil$ mem_util=$memUtil$ query="$query$" sessionId=$sessionId2$'
+  host: $dbhost$
+  index: splunktel_demo
+  source: mysql_perf_api
+  sourcetype: mysql_perf
+name: mysql_fail
+randomizeCount: 0.33
+randomizeEvents: true
+rater: failure
+singlepass: false
+tokens:
+- choice:
+  - mysql-2.splunktel.com
+  - mysql-1.splunktel.com
+  - mysql-3.splunktel.com
+  field: host
+  format: template
+  group: 1
+  name: dbhost
+  type: choice
+- choice:
+  - mysql-2.splunktel.com
+  - mysql-1.splunktel.com
+  - mysql-3.splunktel.com
+  format: template
+  group: 1
+  name: src
+  type: choice
+- format: template
+  name: ts
+  replacement: '%d/%b/%Y %H:%M:%S:%L'
+  type: timestamp
+- format: template
+  lower: 20
+  name: cpuUtil
+  replacement: int
+  type: random
+  upper: 60
+- format: template
+  lower: 30
+  name: memUtil
+  replacement: int
+  type: random
+  upper: 80
+- format: template
+  lower: 1000000
+  name: customerId
+  replacement: int
+  type: random
+  upper: 1999999
+- format: template
+  lower: 1000
+  name: productId
+  replacement: int
+  type: random
+  upper: 1999

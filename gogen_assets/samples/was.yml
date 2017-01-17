@@ -1,0 +1,642 @@
+begin: -1h
+count: 3
+earliest: -3s
+interval: 3
+latest: now
+lines:
+- _raw: "[2/26/10 8:10:45:471] 000000b1 StorageApi    E com.ibm.wps.policy.commands.StorageApi\
+    \ logExceptionGetPvsProperties EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n                                \
+    \ com.ibm.portal.WpsException: EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n\tat com.ibm.wps.policy.commands.StorageApi.logExceptionGetPvsProperties(StorageApi.java:1202)\n\
+    \tat com.ibm.wps.policy.commands.StorageApi.getPvsProperties(StorageApi.java:1265)\n\
+    \tat com.ibm.wps.policy.services.PolicyService.getPolicy(PolicyService.java:191)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPoliciesFromRespository(PolicyCacheManager.java:409)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseDownTree(PolicyCacheManager.java:698)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseTree(PolicyCacheManager.java:573)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPolicies(PolicyCacheManager.java:188)\n\
+    \tat com.ibm.ws.wswebcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:524)\n\
+    \tat com.ibm.wsspi.webcontainer.servlet.GenericServletWrapper.handleRequest(GenericServletWrapper.java:122)\n\
+    \t... 85 more"
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:31:330] 000000b0 PolicyService E com.ibm.wps.policy.services.PolicyService
+    getPolicy Exception calling storage api: com.ibm.portal.WpsException: EJQAB0061E:
+    An ItemNotFoundException occurred in method logExceptionGetPvsProperties.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:46:142] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/choosePortlets.jsp]: Initialization
+    successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:46:173] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/portletTable.jsp]: Initialization
+    successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:58:611] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/endSolo.jsp]: Initialization
+    successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:56:01:408] 000002ce ServletWrappe I   SRVE0242I: [PA_AdvPortDevPumaTest]
+    [/wps/PA_AdvPortDevPumaTest] [PumaTest]: Initialization successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: "[3/10/10 14:56:18:736] 000000af StorageApi    E com.ibm.wps.policy.commands.StorageApi\
+    \ logExceptionGetPvsProperties EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n                                \
+    \ com.ibm.portal.WpsException: EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n\tat com.ibm.wps.policy.commands.StorageApi.logExceptionGetPvsProperties(StorageApi.java:1202)\n\
+    \tat com.ibm.wps.policy.commands.StorageApi.getPvsProperties(StorageApi.java:1265)\n\
+    \tat com.ibm.wps.policy.services.PolicyService.getPolicy(PolicyService.java:191)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPoliciesFromRespository(PolicyCacheManager.java:409)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseDownTree(PolicyCacheManager.java:698)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseTree(PolicyCacheManager.java:573)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPolicies(PolicyCacheManager.java:188)\n\
+    \tat com.ibm.wps.policy.services.PolicyManagerServerSideImpl.getPVSByPath(PolicyManagerServerSideImpl.java:352)\n\
+    \tat com.ibm.wps.theme.policy.ThemePolicyManager.getThemePolicyValueSet(ThemePolicyManager.java:227)\n\
+    \tat com.ibm.wps.theme.policy.tags.InitThemePolicyTag.doStartTag(InitThemePolicyTag.java:149)\n\
+    \tat com.ibm._jsp._Default._jspService(_Default.java:704)\n\tat com.ibm.ws.jsp.runtime.HttpJspBase.service(HttpJspBase.java:87)\n\
+    \tat javax.servlet.http.HttpServlet.service(HttpServlet.java:856)\n\tat com.ibm.wps.engine.templates.themes.Default.render(Default.java:247)\n\
+    \t... 84 more"
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:18:564] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [Web Content Viewer (JSR 286)]: Initialization
+    successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:24:127] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [/jsp/html/view.jsp]: Initialization successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:29:892] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [/jsp/html/dyntitle.jsp]: Initialization successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:37:095] 000000b0 ServletWrappe I   SRVE0242I: [wps] [/wps]
+    [PUBLIC_HANDLER_47555912]: Initialization successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:595] 000000b0 WebContainer  E   SRVE0255E: A WebGroup/Virtual
+    Host to handle /robots.txt has not been defined.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:658] 000000b0 WebContainer  E   SRVE0255E: A WebGroup/Virtual
+    Host to handle /robots.txt has not been defined.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:736] 00000097 PasswordManag E com.ibm.crawler.PasswordManager  getEncodedPair
+    Resolving host 10.1.130.117'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[2/26/10 8:10:45:784] 000000b1 PolicyService E com.ibm.wps.policy.services.PolicyService
+    getPolicy Exception calling storage api: com.ibm.portal.WpsException: EJQAB0061E:
+    An ItemNotFoundException occurred in method logExceptionGetPvsProperties.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[2/26/10 8:10:45:862] 000000b1 ServletWrappe I   SRVE0242I: [PA_WebScanner]
+    [/wps/PA_WebScanner] [/jsp/html/ManageSearchCollections.jsp]: Initialization
+    successful.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:491] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Executing Original Query: //element(*'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Executing actual query: SELECT DISTINCT Links_4.TIID'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Query Parameter Marker Values:'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 1: Type = Long'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 2: Type = Long'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 3: Type = Long'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 4: Type = Binary'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:455] 0000009e SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0005I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0980P00IGH4NQ253044Purger
+    with ID 4970 was started.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:455] 000000a1 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0005I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK09G6360ICLBU4QR10G0Purger
+    with ID 4775 was started.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:470 CST] 000000a1 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK09G6360ICLBU4QR10G0Purger
+    with ID 4775 has finished.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:470 CST] 000000b6 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0986200ICG1KC7134F3PolicyHandler
+    with ID 4960 has finished.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:486 CST] 000000a0 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0986200ICG1KC713C04Purger
+    with ID 4961 has finished.'
+  host: websphere-1.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: "[2/26/10 8:10:45:471] 000000b1 StorageApi    E com.ibm.wps.policy.commands.StorageApi\
+    \ logExceptionGetPvsProperties EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n                                \
+    \ com.ibm.portal.WpsException: EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n\tat com.ibm.wps.policy.commands.StorageApi.logExceptionGetPvsProperties(StorageApi.java:1202)\n\
+    \tat com.ibm.wps.policy.commands.StorageApi.getPvsProperties(StorageApi.java:1265)\n\
+    \tat com.ibm.wps.policy.services.PolicyService.getPolicy(PolicyService.java:191)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPoliciesFromRespository(PolicyCacheManager.java:409)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseDownTree(PolicyCacheManager.java:698)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseTree(PolicyCacheManager.java:573)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPolicies(PolicyCacheManager.java:188)\n\
+    \tat com.ibm.ws.wswebcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:524)\n\
+    \tat com.ibm.wsspi.webcontainer.servlet.GenericServletWrapper.handleRequest(GenericServletWrapper.java:122)\n\
+    \t... 85 more"
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:31:330] 000000b0 PolicyService E com.ibm.wps.policy.services.PolicyService
+    getPolicy Exception calling storage api: com.ibm.portal.WpsException: EJQAB0061E:
+    An ItemNotFoundException occurred in method logExceptionGetPvsProperties.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:46:142] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/choosePortlets.jsp]: Initialization
+    successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:46:173] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/portletTable.jsp]: Initialization
+    successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:58:611] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/endSolo.jsp]: Initialization
+    successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:56:01:408] 000002ce ServletWrappe I   SRVE0242I: [PA_AdvPortDevPumaTest]
+    [/wps/PA_AdvPortDevPumaTest] [PumaTest]: Initialization successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: "[3/10/10 14:56:18:736] 000000af StorageApi    E com.ibm.wps.policy.commands.StorageApi\
+    \ logExceptionGetPvsProperties EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n                                \
+    \ com.ibm.portal.WpsException: EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n\tat com.ibm.wps.policy.commands.StorageApi.logExceptionGetPvsProperties(StorageApi.java:1202)\n\
+    \tat com.ibm.wps.policy.commands.StorageApi.getPvsProperties(StorageApi.java:1265)\n\
+    \tat com.ibm.wps.policy.services.PolicyService.getPolicy(PolicyService.java:191)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPoliciesFromRespository(PolicyCacheManager.java:409)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseDownTree(PolicyCacheManager.java:698)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseTree(PolicyCacheManager.java:573)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPolicies(PolicyCacheManager.java:188)\n\
+    \tat com.ibm.wps.policy.services.PolicyManagerServerSideImpl.getPVSByPath(PolicyManagerServerSideImpl.java:352)\n\
+    \tat com.ibm.wps.theme.policy.ThemePolicyManager.getThemePolicyValueSet(ThemePolicyManager.java:227)\n\
+    \tat com.ibm.wps.theme.policy.tags.InitThemePolicyTag.doStartTag(InitThemePolicyTag.java:149)\n\
+    \tat com.ibm._jsp._Default._jspService(_Default.java:704)\n\tat com.ibm.ws.jsp.runtime.HttpJspBase.service(HttpJspBase.java:87)\n\
+    \tat javax.servlet.http.HttpServlet.service(HttpServlet.java:856)\n\tat com.ibm.wps.engine.templates.themes.Default.render(Default.java:247)\n\
+    \t... 84 more"
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:18:564] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [Web Content Viewer (JSR 286)]: Initialization
+    successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:24:127] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [/jsp/html/view.jsp]: Initialization successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:29:892] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [/jsp/html/dyntitle.jsp]: Initialization successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:37:095] 000000b0 ServletWrappe I   SRVE0242I: [wps] [/wps]
+    [PUBLIC_HANDLER_47555912]: Initialization successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:595] 000000b0 WebContainer  E   SRVE0255E: A WebGroup/Virtual
+    Host to handle /robots.txt has not been defined.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:658] 000000b0 WebContainer  E   SRVE0255E: A WebGroup/Virtual
+    Host to handle /robots.txt has not been defined.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:736] 00000097 PasswordManag E com.ibm.crawler.PasswordManager  getEncodedPair
+    Resolving host 10.1.130.117'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[2/26/10 8:10:45:784] 000000b1 PolicyService E com.ibm.wps.policy.services.PolicyService
+    getPolicy Exception calling storage api: com.ibm.portal.WpsException: EJQAB0061E:
+    An ItemNotFoundException occurred in method logExceptionGetPvsProperties.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[2/26/10 8:10:45:862] 000000b1 ServletWrappe I   SRVE0242I: [PA_WebScanner]
+    [/wps/PA_WebScanner] [/jsp/html/ManageSearchCollections.jsp]: Initialization
+    successful.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:491] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Executing Original Query: //element(*'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Executing actual query: SELECT DISTINCT Links_4.TIID'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Query Parameter Marker Values:'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 1: Type = Long'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 2: Type = Long'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 3: Type = Long'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 4: Type = Binary'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:455] 0000009e SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0005I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0980P00IGH4NQ253044Purger
+    with ID 4970 was started.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:455] 000000a1 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0005I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK09G6360ICLBU4QR10G0Purger
+    with ID 4775 was started.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:470 CST] 000000a1 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK09G6360ICLBU4QR10G0Purger
+    with ID 4775 has finished.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:470 CST] 000000b6 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0986200ICG1KC7134F3PolicyHandler
+    with ID 4960 has finished.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:486 CST] 000000a0 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0986200ICG1KC713C04Purger
+    with ID 4961 has finished.'
+  host: websphere-2.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: "[2/26/10 8:10:45:471] 000000b1 StorageApi    E com.ibm.wps.policy.commands.StorageApi\
+    \ logExceptionGetPvsProperties EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n                                \
+    \ com.ibm.portal.WpsException: EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n\tat com.ibm.wps.policy.commands.StorageApi.logExceptionGetPvsProperties(StorageApi.java:1202)\n\
+    \tat com.ibm.wps.policy.commands.StorageApi.getPvsProperties(StorageApi.java:1265)\n\
+    \tat com.ibm.wps.policy.services.PolicyService.getPolicy(PolicyService.java:191)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPoliciesFromRespository(PolicyCacheManager.java:409)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseDownTree(PolicyCacheManager.java:698)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseTree(PolicyCacheManager.java:573)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPolicies(PolicyCacheManager.java:188)\n\
+    \tat com.ibm.ws.wswebcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:524)\n\
+    \tat com.ibm.wsspi.webcontainer.servlet.GenericServletWrapper.handleRequest(GenericServletWrapper.java:122)\n\
+    \t... 85 more"
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:31:330] 000000b0 PolicyService E com.ibm.wps.policy.services.PolicyService
+    getPolicy Exception calling storage api: com.ibm.portal.WpsException: EJQAB0061E:
+    An ItemNotFoundException occurred in method logExceptionGetPvsProperties.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:46:142] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/choosePortlets.jsp]: Initialization
+    successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:46:173] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/portletTable.jsp]: Initialization
+    successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:55:58:611] 000000b0 ServletWrappe I   SRVE0242I: [PA_Eecontentandlayout]
+    [/wps/PA_Eecontentandlayout] [/WEB-INF/composer/html/endSolo.jsp]: Initialization
+    successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/10/10 14:56:01:408] 000002ce ServletWrappe I   SRVE0242I: [PA_AdvPortDevPumaTest]
+    [/wps/PA_AdvPortDevPumaTest] [PumaTest]: Initialization successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: "[3/10/10 14:56:18:736] 000000af StorageApi    E com.ibm.wps.policy.commands.StorageApi\
+    \ logExceptionGetPvsProperties EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n                                \
+    \ com.ibm.portal.WpsException: EJQAB0061E: An ItemNotFoundException occurred\
+    \ in method logExceptionGetPvsProperties.\n\tat com.ibm.wps.policy.commands.StorageApi.logExceptionGetPvsProperties(StorageApi.java:1202)\n\
+    \tat com.ibm.wps.policy.commands.StorageApi.getPvsProperties(StorageApi.java:1265)\n\
+    \tat com.ibm.wps.policy.services.PolicyService.getPolicy(PolicyService.java:191)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPoliciesFromRespository(PolicyCacheManager.java:409)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseDownTree(PolicyCacheManager.java:698)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.traverseTree(PolicyCacheManager.java:573)\n\
+    \tat com.ibm.wps.policy.services.PolicyCacheManager.getPolicies(PolicyCacheManager.java:188)\n\
+    \tat com.ibm.wps.policy.services.PolicyManagerServerSideImpl.getPVSByPath(PolicyManagerServerSideImpl.java:352)\n\
+    \tat com.ibm.wps.theme.policy.ThemePolicyManager.getThemePolicyValueSet(ThemePolicyManager.java:227)\n\
+    \tat com.ibm.wps.theme.policy.tags.InitThemePolicyTag.doStartTag(InitThemePolicyTag.java:149)\n\
+    \tat com.ibm._jsp._Default._jspService(_Default.java:704)\n\tat com.ibm.ws.jsp.runtime.HttpJspBase.service(HttpJspBase.java:87)\n\
+    \tat javax.servlet.http.HttpServlet.service(HttpServlet.java:856)\n\tat com.ibm.wps.engine.templates.themes.Default.render(Default.java:247)\n\
+    \t... 84 more"
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:18:564] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [Web Content Viewer (JSR 286)]: Initialization
+    successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:24:127] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [/jsp/html/view.jsp]: Initialization successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:29:892] 000000b0 ServletWrappe I   SRVE0242I: [PA_WCMLRingPortJSR286]
+    [/wps/PA_WCMLRingPortJSR286] [/jsp/html/dyntitle.jsp]: Initialization successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 19:17:37:095] 000000b0 ServletWrappe I   SRVE0242I: [wps] [/wps]
+    [PUBLIC_HANDLER_47555912]: Initialization successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:595] 000000b0 WebContainer  E   SRVE0255E: A WebGroup/Virtual
+    Host to handle /robots.txt has not been defined.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:658] 000000b0 WebContainer  E   SRVE0255E: A WebGroup/Virtual
+    Host to handle /robots.txt has not been defined.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 21:43:43:736] 00000097 PasswordManag E com.ibm.crawler.PasswordManager  getEncodedPair
+    Resolving host 10.1.130.117'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[2/26/10 8:10:45:784] 000000b1 PolicyService E com.ibm.wps.policy.services.PolicyService
+    getPolicy Exception calling storage api: com.ibm.portal.WpsException: EJQAB0061E:
+    An ItemNotFoundException occurred in method logExceptionGetPvsProperties.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[2/26/10 8:10:45:862] 000000b1 ServletWrappe I   SRVE0242I: [PA_WebScanner]
+    [/wps/PA_WebScanner] [/jsp/html/ManageSearchCollections.jsp]: Initialization
+    successful.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:491] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Executing Original Query: //element(*'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Executing actual query: SELECT DISTINCT Links_4.TIID'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Query Parameter Marker Values:'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 1: Type = Long'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 2: Type = Long'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 3: Type = Long'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/17/10 3:11:51:507] 000000be Query         E com.ibm.icm.da.portable.query.Query
+    openQueryCursor() Param Marker 4: Type = Binary'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:455] 0000009e SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0005I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0980P00IGH4NQ253044Purger
+    with ID 4970 was started.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:455] 000000a1 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0005I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK09G6360ICLBU4QR10G0Purger
+    with ID 4775 was started.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:470 CST] 000000a1 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK09G6360ICLBU4QR10G0Purger
+    with ID 4775 has finished.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:470 CST] 000000b6 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0986200ICG1KC7134F3PolicyHandler
+    with ID 4960 has finished.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+- _raw: '[3/9/10 22:30:00:486 CST] 000000a0 SchedulerTask I com.ibm.wps.datastore.ejb.cleanup.SchedulerTaskNotificationSinkBean
+    handleEvent() EJPDE0007I: Task WPS_UNIQUE_TASK_com.ibm.portal.ai.task.AITask_18_39G6IBK0986200ICG1KC713C04Purger
+    with ID 4961 has finished.'
+  host: websphere-3.splunktel.com
+  index: splunktel_demo
+  source: /opt/websphere/appserver/log/SystemOut.log
+  sourcetype: websphere_trlog
+name: noise_was
+randomizeCount: 0.33
+randomizeEvents: true
+rater: outage
+tokens:
+- format: regex
+  name: token.0
+  replacement: '%m/%d/%y %H:%M:%S'
+  token: (\d{1,2}/\d{2}/\d{2}\s\d{1,2}:\d{2}:\d{2})
+  type: timestamp
+- format: regex
+  name: token.1
+  replacement: '%m/%d/%y %H:%M:%S'
+  token: (\d{1,2}/\d{2}/\d{2}\s\d{1,2}:\d{2}:\d{2})
+  type: timestamp

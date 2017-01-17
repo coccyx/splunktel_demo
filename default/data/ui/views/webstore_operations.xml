@@ -1,0 +1,426 @@
+<dashboard>
+  <label>Web Store Operational Visibility</label>
+  <description></description>
+  <row>
+    <chart>
+      <title>SLA Infractions - Last Hour</title>
+      <searchString>index=splunktel_demo sourcetype="access_combined" | eval bytes = bytes / 20 | eval sla=105 | timechart avg(sla) as SLA avg(bytes) as avgtx span=1m |eval avgtx=round(avgtx,0)| gauge avgtx 0 20 50 250</searchString>
+      <earliestTime>-15m</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="charting.chart">radialGauge</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.rangeValues">["0","30","80","125"]</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">minimal</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.gaugeColors">[0x84E900,0xFFE800,0xBF3030]</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+    </chart>
+    <chart>
+      <title>Failed Transactions - Last Hour</title>
+      <searchString>index=splunktel_demo * | head 1 | eval count = "42" | gauge count 0 20 50 250</searchString>
+      <earliestTime>-1m@m</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="charting.chart">radialGauge</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.rangeValues">["0","30","70","100"]</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">minimal</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.gaugeColors">[0x84E900,0xFFE800,0xBF3030]</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+    </chart>
+    <chart>
+      <title>Current Capacity</title>
+      <searchString>index=splunktel_demo sourcetype="access_combined" | eval bytes = bytes / 50 | eval capacity = 100 - bytes | stats avg(capacity) as capacity | eval rcapacity = round(capacity) | gauge rcapacity 0 40 60 100</searchString>
+      <earliestTime>-15m</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="charting.chart">fillerGauge</option>
+      <option name="charting.chart.usePercentageRange">true</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+    </chart>
+  </row>
+  <row>
+    <chart>
+      <title>Real-Time Transaction Volume</title>
+      <search>
+        <query>index=splunktel_demo sourcetype="access_combined" | eval bytes = bytes / 50 | eval avg_trans = 45 | timechart avg(avg_trans) as "7-day Average" avg(bytes) as "Transactions"</query>
+        <earliest>-60m@m</earliest>
+        <latest>now</latest>
+      </search>
+      <option name="charting.axisTitleX.visibility">collapsed</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart">column</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+      <option name="charting.legend.masterLegend">null</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+      <selection>
+        <set token="selection.earliest">$start$</set>
+        <set token="selection.latest">$end$</set>
+        <set token="start.count">$start.count$</set>
+        <set token="end.count">$end.count$</set>
+      </selection>
+      <drilldown>
+        <set token="showChart1">true</set>
+      </drilldown>
+      <option name="charting.chart.bubbleMaximumSize">50</option>
+      <option name="charting.chart.bubbleMinimumSize">10</option>
+      <option name="charting.chart.bubbleSizeBy">area</option>
+      <option name="charting.chart.overlayFields">"7-day Average"</option>
+    </chart>
+  </row>
+  <row grouping="3,3,3">
+    <chart depends="$showChart1$">
+      <title>Key Web Server Metrics</title>
+      <searchString>index=splunktel_demo * | head 1 | eval count = 20 | gauge count 0 25 50 75 100</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.chart">radialGauge</option>
+      <option name="height">150px</option>
+      <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+      <option name="charting.legend.masterLegend">null</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.rangeValues">["0","30","70","100"]</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">minimal</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.gaugeColors">[0x84E900,0xFFE800,0xBF3030]</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <drilldown>
+        <set token="showChart2">true</set>
+      </drilldown>
+    </chart>
+    <chart depends="$showChart1$">
+      <searchString>index=splunktel_demo sourcetype="access_combined" | timechart avg(timetaken) by src</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.chart">line</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisEnd</option>
+      <option name="charting.axisTitleY.text">ms</option>
+      <option name="chart.nullValueMode">connect</option>
+      <option name="height">150px</option>
+      <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+      <option name="charting.legend.masterLegend">null</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleX.visibility">collapsed</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <drilldown>
+        <set token="showChart5">true</set>
+      </drilldown>
+    </chart>
+    <chart depends="$showChart5$">
+      <title>Top status codes (Last 15m)</title>
+      <searchString>index=splunktel_demo sourcetype="access_combined" | stats count(status) as count sparkline(count) as sparkline by status_description | rename status_description as "http status code" | sort - count</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="entityName">auto</option>
+      <option name="displayRowNumbers">off</option>
+      <option name="dataOverlayMode">heatmap</option>
+      <option name="wrap">false</option>
+      <format type="sparkline" field="sparkline">
+        <option name="lineColor">#5379af</option>
+        <option name="fillColor">#CCDDFF</option>
+        <option name="lineWidth">1</option>
+        <option name="height">20</option>
+      </format>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+      <option name="charting.chart">pie</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+    </chart>
+    <chart depends="$showChart1$">
+      <title>Key App Server Metrics</title>
+      <searchString>index=splunktel_demo sourcetype="access_combined" | eval capacity = bytes / 50 | stats avg(capacity) as capacity | eval rcapacity = round(capacity) | gauge rcapacity 0 25 50 75 200</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.chart">radialGauge</option>
+      <option name="height">150px</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.rangeValues">["0","30","70","100"]</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">minimal</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.gaugeColors">[0x84E900,0xFFE800,0xBF3030]</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+    </chart>
+    <chart depends="$showChart1$">
+      <searchString>index=splunktel_demo sourcetype="access_combined" | eval timetaken = timetaken / 6 | timechart avg(timetaken) by src</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.chart">line</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisEnd</option>
+      <option name="charting.axisTitleY.text">ms</option>
+      <option name="chart.nullValueMode">connect</option>
+      <option name="height">150px</option>
+      <option name="charting.axisTitleX.visibility">collapsed</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+      <option name="charting.legend.masterLegend">null</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+      <drilldown>
+        <set token="showChart3">true</set>
+      </drilldown>
+    </chart>
+    <chart depends="$showChart3$">
+      <title>JVM Heap Size</title>
+      <searchString>index=splunktel_demo sourcetype="access_combined" | eval bytes = bytes / 3 | timechart avg(bytes) by src</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.chart">area</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisEnd</option>
+      <option name="charting.axisTitleY.text">megabytes</option>
+      <option name="chart.nullValueMode">connect</option>
+      <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+      <option name="charting.legend.masterLegend">null</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleX.visibility">collapsed</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+      <option name="charting.chart.nullValueMode">connect</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.placement">right</option>
+    </chart>
+    <chart depends="$showChart1$">
+      <title>Key Database Metrics</title>
+      <searchString>index=splunktel_demo sourcetype="access_combined" | eval capacity = bytes / 30 | stats avg(capacity) as capacity | eval rcapacity = round(capacity) | gauge rcapacity 0 250 500 750 1000</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.chart">radialGauge</option>
+      <option name="height">150px</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.rangeValues">["0","30","70","100"]</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">minimal</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.gaugeColors">[0x84E900,0xFFE800,0xBF3030]</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+    </chart>
+    <chart depends="$showChart1$">
+      <searchString>index=splunktel_demo sourcetype="mysql_perf" | timechart avg(transaction_speed) by src</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.chart">line</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisEnd</option>
+      <option name="charting.axisTitleY.text">ms</option>
+      <option name="chart.nullValueMode">connect</option>
+      <option name="height">150px</option>
+      <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+      <option name="charting.legend.masterLegend">null</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleX.visibility">collapsed</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <drilldown>
+        <set token="showChart4">true</set>
+      </drilldown>
+    </chart>
+    <chart depends="$showChart4$">
+      <title>Database Concurrency</title>
+      <searchString>index=splunktel_demo sourcetype=mysql_perf  | rex "(?:(FROM\s+|INTO\s+)(?&lt;table&gt;\w+))"  | eval table=lower(table) | eval duration=round(transaction_speed/1000, 0) | concurrency duration=duration | timechart max(concurrency) as "Max Concurrency" | eval "Expected Concurrency"=1</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.axisTitleX.visibility">collapsed</option>
+      <option name="charting.axisTitleY.text">Query</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart">line</option>
+      <option name="charting.chart.nullValueMode">zero</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+      <option name="charting.legend.masterLegend">null</option>
+      <drilldown>
+        <set token="showChart6">true</set>
+      </drilldown>
+    </chart>
+  </row>
+  <row>
+    <chart depends="$showChart6$">
+      <title>Query Performance</title>
+      <searchString>index=splunktel_demo sourcetype=mysql_perf  | rex "(?:(FROM\s+|INTO\s+)(?&lt;table&gt;\w+))"  | eval table=lower(table)  | eval newquery=replace(query, "[0-9]", "") | eventstats earliest(query) as query by newquery |  timechart avg(transaction_speed) as transaction_speed by query</searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <option name="charting.axisTitleX.visibility">collapsed</option>
+      <option name="charting.axisTitleY.text">Query Time (Log Scale)</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.maximumNumber">50000</option>
+      <option name="charting.axisY.minimumNumber">100</option>
+      <option name="charting.axisY.scale">log</option>
+      <option name="charting.chart">line</option>
+      <option name="charting.chart.nullValueMode">zero</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">none</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">none</option>
+      <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+      <option name="charting.legend.masterLegend">null</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+    </chart>
+  </row>
+  <row>
+    <table depends="$showChart6$">
+      <title>Queries</title>
+      <searchString>
+        <![CDATA[index=splunktel_demo sourcetype=mysql_perf  | rex "(?:(FROM\s+|INTO\s+)(?<table>\w+))" | rex "(?<querytype>(SELECT|INSERT))" |cluster  showcount=t | stats latest(table) AS table latest(cluster_count) AS count latest(transaction_speed) as transaction_speed sparkline(avg(transaction_speed),1m) as sparkline by query | table query, table, count, transaction_speed, sparkline | sort - transaction_speed]]>
+      </searchString>
+      <earliestTime>$selection.earliest$</earliestTime>
+      <latestTime>$selection.latest$</latestTime>
+      <format type="sparkline" field="sparkline">
+        <option name="lineColor">#5379af</option>
+        <option name="fillColor">#CCDDFF</option>
+        <option name="lineWidth">1</option>
+        <option name="height">20</option>
+      </format>
+    </table>
+  </row>
+</dashboard>

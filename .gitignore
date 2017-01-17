@@ -1,0 +1,6 @@
+bin/output/*
+bin/gogen_real*
+splunktel_demo.spl
+samples/*.part
+.build*
+.gitbak

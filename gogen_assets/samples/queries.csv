@@ -1,0 +1,11 @@
+query,_weight
+"SELECT * FROM sessions WHERE session_id='$sessionId$'",4
+"INSERT INTO SESSIONS (session_id, customer_id) VALUES ('$sessionId$', $customerId$)",2
+"INSERT INTO ORDERS (session_id, customer_id, product_id) VALUES ('$sessionId$', $customerId$, $productId$)",1
+"SELECT * FROM customers WHERE customer_id=$customerId$",2
+"SELECT customer_id, fname, lname, type FROM customers WHERE customer_id=$customerId$",1
+"SELECT customer_id, username FROM customers WHERE customer_id=$customerId$",1
+"SELECT product_id, sku, price,  FROM products WHERE product_id=$productId$",1
+"SELECT price FROM products WHERE product_id=$productId$",1
+"SELECT sku FROM products WHERE product_id=$productId$",1
+"SELECT * FROM products WHERE product_id=$productId$",4

@@ -1,0 +1,197 @@
+<form script="autodiscover.js, single_trend.js,table_data_bar.js" stylesheet="single_trend.css,table_data_bar.css">
+  <label>Sales</label>
+  <fieldset autoRun="true" submitButton="false">
+    <input type="multiselect" token="networkProvider" searchWhenChanged="true">
+      <label>Network Provider</label>
+      <choice value="*">All</choice>
+      <choice value="Splunktel">Splunktel</choice>
+      <choice value="Sprint">Sprint</choice>
+      <choice value="Clearwire">Clearwire</choice>
+      <default>*</default>
+      <delimiter> OR </delimiter>
+      <valuePrefix>networkProviderName="</valuePrefix>
+      <valueSuffix>"</valueSuffix>
+    </input>
+    <input type="checkbox" token="planType" searchWhenChanged="true">
+      <label>Plan Type</label>
+      <choice value="Postpaid">Postpaid</choice>
+      <choice value="Prepaid">Prepaid</choice>
+      <default>Prepaid,Postpaid</default>
+      <delimiter> OR </delimiter>
+      <valuePrefix>planType="</valuePrefix>
+      <valueSuffix>"</valueSuffix>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <single>
+        <title>Activations</title>
+        <search>
+          <query>index=splunktel_demo sourcetype=business_event $networkProvider$ $planType$|eval avg=3423 | stats count last(avg) as avg | transpose| fields "row 1"| rename "row 1" as count
+| rangemap field=count low=3000-15000 elevated=2000-2999 severe=0-1999 default=low</query>
+          <earliest>rt-60m</earliest>
+          <latest>rt</latest>
+        </search>
+        <option name="afterLabel">activations in the last hour</option>
+        <option name="classField">range</option>
+        <option name="field">count</option>
+        <option name="refresh.time.visible">0</option>
+        <option name="underLabel">-18% compared to the average</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Revenue</title>
+        <search>
+          <query>index=splunktel_demo sourcetype=business_event $networkProvider$ $planType$
+|eval avg=59 | stats avg(planPrice) AS ARPU last(avg) as avg| eval ARPU=round(ARPU,2) | transpose| fields "row 1" | rename "row 1" as ARPU
+| rangemap field=ARPU low=60-999 elevated=53-59 high=43-52 severe=0-42 default=low</query>
+          <earliest>rt-60m</earliest>
+          <latest>rt</latest>
+        </search>
+        <option name="beforeLabel">Revenue per Phone $</option>
+        <option name="classField">range</option>
+        <option name="field">ARPU</option>
+        <option name="underLabel">+2% compared to the average</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Activations Over Time</title>
+        <search>
+          <query>index=splunktel_demo sourcetype=business_event $networkProvider$ $planType$ | timechart count as Sales  | predict future_timespan=1 Sales as Prediction</query>
+          <earliest>-60m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.rangeValues">[0,30,70,100]</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.gaugeColors">0x84E900,0xFFE800,0xBF3030</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.axisTitleX.text">Time</option>
+        <option name="charting.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <drilldown>
+          <link>webstore_operations</link>
+        </drilldown>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Revenue by Plan, Price, and Location</title>
+        <search>
+          <query>(index=splunktel_demo sourcetype=business_event (orderType=NewActivation OR orderType=AddLOS))  | rename accountType AS EventObject.accountType marketCity AS EventObject.marketCity marketState AS EventObject.marketState networkProviderName AS EventObject.networkProviderName orderType AS EventObject.orderType phoneCode AS EventObject.phoneCode phoneName AS EventObject.phoneName phoneType AS EventObject.phoneType planDescription AS EventObject.planDescription planName AS EventObject.planName planPrice AS EventObject.planPrice planType AS EventObject.planType | stats dedup_splitvals=t sum("EventObject.planPrice") AS "Total Revenue" avg("EventObject.planPrice") AS "Average Plan Price" count AS "Count of Event Object"  by "EventObject.marketState", "EventObject.planDescription" | sort limit=500 "EventObject.marketState" | fields - _span  | rename "EventObject.marketState" AS marketState "EventObject.planDescription" AS planDescription  | fillnull "Count of Event Object" | fields marketState, planDescription, "Total Revenue", "Average Plan Price", "Count of Event Object"</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">bubble</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+      </chart>
+    </panel>
+    <panel>
+      <map>
+        <title>Sales Map</title>
+        <search>
+          <query>index=splunktel_demo sourcetype=radius | iplocation device_ip | geostats latfield=lat longfield=lon count</query>
+          <earliest>rt-60m</earliest>
+          <latest>rt+30s</latest>
+        </search>
+        <option name="mapping.data.maxClusters">250</option>
+        <option name="mapping.map.center">(36.03,-89.03)</option>
+        <option name="mapping.seriesColors">[0x5379af, 0x9ac23c, 0xf7902b, 0x956d95, 0x6ab7c7, 0xd85d3c, 0xfac51c, 0xdd86af]</option>
+        <option name="charting.legend.masterLegend">null</option>
+        <option name="mapping.map.zoom">3</option>
+        <option name="mapping.tileLayer.minZoom">2</option>
+        <option name="mapping.tileLayer.maxZoom">6</option>
+        <option name="mapping.markerLayer.markerOpacity">0.8</option>
+        <option name="height">300px</option>
+        <option name="mapping.markerLayer.markerMaxSize">50</option>
+        <option name="mapping.markerLayer.markerMinSize">10</option>
+        <option name="drilldown">all</option>
+      </map>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Phone Sales</title>
+        <search>
+          <query>index=splunktel_demo sourcetype=business_event  $networkProvider$ $planType$
+| stats count as Sales, sparkline(count) as Sparkline by phoneName | sort Sales desc</query>
+          <earliest>rt-60m</earliest>
+          <latest>rt+30s</latest>
+        </search>
+        <drilldown>
+          <set token="showChart1">true</set>
+          <unset token="showChart2"></unset>
+          <set token="s_phoneName">$row.phoneName$</set>
+        </drilldown>
+        <option name="wrap">true</option>
+        <option name="displayRowNumbers">false</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">row</option>
+        <option name="count">10</option>
+        <format type="sparkline" field="Sparkline">
+          <option name="lineColor">#5379af</option>
+          <option name="fillColor">#CCDDFF</option>
+          <option name="lineWidth">1</option>
+          <option name="height">20</option>
+        </format>
+      </table>
+    </panel>
+    <panel>
+      <table id="table1" depends="$showChart1$">
+        <title>$s_phoneName$ Plans</title>
+        <search>
+          <query>index=splunktel_demo sourcetype=business_event phoneName="$s_phoneName$" $networkProvider$ $planType$ |top limit=100 planName</query>
+          <earliest>rt-60m</earliest>
+          <latest>rt+30s</latest>
+        </search>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="dataOverlayMode">heatmap</option>
+        <option name="drilldown">row</option>
+        <option name="count">10</option>
+      </table>
+    </panel>
+  </row>
+</form>

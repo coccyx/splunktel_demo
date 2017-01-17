@@ -1,0 +1,4 @@
+name: mobilemusic
+fileName: mobilemusic.lua
+options:
+    errorRate: 0.02

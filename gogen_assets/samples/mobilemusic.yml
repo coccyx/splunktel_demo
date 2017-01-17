@@ -1,0 +1,207 @@
+begin: -1h
+count: 3
+earliest: -3s
+generator: mobilemusic
+interval: 3
+latest: now
+lines:
+- _raw: $ts1$ $radhost$ radiusd[$radpid$]:[ID 959576 local1.info] INFO RADOP(13)
+    acct start for $mdn$@splunktel.com $internalIP$ from $externalIP$ recorded OK.
+  host: $radhost$
+  index: splunktel_demo
+  source: /var/log/radius.log
+  sourcetype: radius
+- _raw: $ts2$ $webIP$ $uri$ - 80 - $internalIP$ "$userAgent$" $httpStatus$ 0 0 $timeTaken$ $bytes$
+  host: $webHost$
+  index: splunktel_demo
+  source: /var/log/httpd/access_log
+  sourcetype: access_custom
+- _raw: $ts1$ $radhost$ radiusd[$radpid$]:[ID 959576 local1.info] INFO RADOP(13)
+    acct stop for $mdn$@splunktel.com $internalIP$ from $externalIP$ recorded OK.
+  host: $radhost$
+  index: splunktel_demo
+  source: /var/log/radius.log
+  sourcetype: radius
+name: mobilemusic
+singlePass: false
+randomizeCount: 0.2
+rater: musicsales
+tokens:
+- format: template
+  name: ts1
+  replacement: '%b %d %H:%M:%S.%f'
+  type: timestamp
+- format: template
+  name: ts2
+  replacement: '%Y-%m-%d %H:%M:%S.%f'
+  type: timestamp
+- choice:
+  - aaa1
+  - aaa2
+  - aaa3
+  format: template
+  group: 2
+  name: radhost
+  type: choice
+- choice:
+  - aaa1
+  - aaa2
+  - aaa3
+  format: template
+  group: 2
+  name: radhost
+  type: choice
+  field: host
+- choice:
+  - '2363'
+  - '12676'
+  - '12548'
+  format: template
+  name: radpid
+  type: choice
+- format: template
+  group: 4
+  name: internalIP
+  sample: internal_ips.sample
+  type: choice
+- format: template
+  group: 5
+  name: externalIP
+  sample: external_ips.sample
+  type: choice
+- format: template
+  group: 3
+  name: webHost
+  sample: webhosts.csv
+  srcField: host
+  field: host
+  type: fieldChoice
+- format: template
+  group: 3
+  name: webIP
+  sample: webhosts.csv
+  srcField: ip
+  type: fieldChoice
+- choice:
+  - GET /browse/search/$sartId$
+  - GET /browse/tracks/$trackId$
+  - POST /browse/artist/$artId$
+  - GET /browse/home
+  - POST /sync/createplaylist
+  - GET /sync/addtolibrary/$trackId$
+  - POST /playhistory/uploadhistory
+  - GET /auth/$mdn2$
+  - GET /ads/showbanner
+  format: template
+  name: uri
+  type: choice
+- choice:
+  - racklemore
+  - Pharrell
+  - Avicii
+  - Beyonce
+  - Katy+Perry
+  - EXO
+  - '"f(x)"'
+  - Alfred+Hui
+  - raroon+5
+  - Robin+Thicke
+  - Justin+Timberlake
+  - Conchita+Wurst
+  - Bingo+Players
+  - Drake
+  - Bruno+Mars
+  - John+Legend
+  - George+Ezza
+  - Katy+Perry+Ft+Juicy+J
+  - Lorde
+  - Jason+Derulo
+  - Imagine+Dragons
+  - Ellie+Goulding
+  format: template
+  name: sartId
+  type: choice
+- choice:
+  - '01011207201000005652000000000021'
+  - '01011207201000005652000000000047'
+  - '01011207201000005652000000000068'
+  - '01011207201000005652000000000018'
+  - '01011207201000005652000000000031'
+  - '01011207201000005652000000000007'
+  - '01011207201000005652000000000013'
+  - '01011207201000005652000000000041'
+  - '01011207201000005652000000000053'
+  - '01011207201000005652000000000023'
+  - '01011207201000005652000000000029'
+  - '01011207201000005652000000000037'
+  - '01011207201000005652000000000011'
+  - '01011207201000005652000000000003'
+  - '01011207201000005652000000000083'
+  - '01011207201000005652000000000017'
+  - '01011207201000005652000000000071'
+  - '01011207201000005652000000000026'
+  - '01011207201000005652000000000055'
+  - '01011207201000005652000000000084'
+  - '01011207201000005652000000000014'
+  - '01011207201000005652000000000025'
+  - '01011207201000005652000000000049'
+  format: template
+  name: trackId
+  type: choice
+- choice:
+  - '0019'
+  - '0018'
+  - '0014'
+  - '006'
+  - '0026'
+  - '0017'
+  - '0016'
+  - '0015'
+  - '0027'
+  - '007'
+  - '0021'
+  - '0011'
+  - '0012'
+  - '0013'
+  - '0020'
+  - '005'
+  - '0044'
+  - '001'
+  - '0032'
+  - '008'
+  - '0022'
+  format: template
+  name: artId
+  type: choice
+- format: template
+  group: 1
+  name: mdn
+  sample: customer_master_small.csv
+  srcField: customerMDN
+  type: fieldChoice
+- format: template
+  group: 1
+  name: mdn2
+  sample: customer_master_small.csv
+  srcField: customerMDN
+  type: fieldChoice
+- format: template
+  name: userAgent
+  sample: useragents.sample
+  type: choice
+- format: template
+  lower: 100
+  name: timeTaken
+  replacement: int
+  type: random
+  upper: 1000
+- format: template
+  lower: 200
+  name: bytes
+  replacement: int
+  type: random
+  upper: 4000
+- format: template
+  name: httpStatus
+  replacement: "200"
+  type: static
