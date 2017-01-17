@@ -8,6 +8,6 @@ deployment:
     branch: master
     commands:
       - sed -i s/_VERSION_/$CIRCLE_TAG/ ./default/app.conf
-      - ./build.sh
+      - sh build.sh
       - go get github.com/tcnksm/ghr
       - ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace `git describe --tags` splunktel_demo.spl
