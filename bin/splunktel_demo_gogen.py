@@ -333,7 +333,7 @@ if __name__ == '__main__':
         sys.stdout.write("<stream>\n")
 
         while True:
-            data = p.stdout.readline()
+            data = p.stdout.read(1024)
             # logger.debug("data: %s" % data)
             sys.stdout.write(data)
             sys.stdout.flush()
